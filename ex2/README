@@ -1,0 +1,47 @@
+tank10000
+===============================================================================
+Alexandr Tankov, ID 327337903, alexande.tankov@mail.huji.ac.il
+===============================================================================
+
+                           Project 2 - Basic Arithmetic
+                           ----------------------------
+  
+
+Submitted Files
+---------------
+README - This file.
+HalfAdder.hdl
+FullAdder.hdl
+Add16.hdl
+Inc16.hdl
+ALU.hdl
+ShiftLeft.hdl
+ShiftRight.hdl
+Mul.hdl
+
+Helper Chips
+------------
+ShiftLeft2.hdl
+ShiftLeft3.hdl
+ShiftLeft4.hdl
+ShiftLeft5.hdl
+ShiftLeft6.hdl
+ShiftLeft7.hdl
+ShiftLeft8.hdl
+ShiftLeft9.hdl
+ShiftLeft10.hdl
+ShiftLeft11.hdl
+ShiftLeft12.hdl
+ShiftLeft13.hdl
+ShiftLeft14.hdl
+ShiftLeft15.hdl
+IsZero.hdl
+IsNegative.hdl
+SetSign16.hdl
+MulBit16.hdl
+
+
+
+Remarks
+-------
+

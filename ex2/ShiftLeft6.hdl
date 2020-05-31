@@ -1,0 +1,9 @@
+CHIP ShiftLeft6
+{
+     IN in[16];
+     OUT out[16];
+
+     PARTS:
+     ShiftLeft3(in=in, out=temp);
+     ShiftLeft3(in=temp, out=out);
+}

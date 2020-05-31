@@ -1,0 +1,24 @@
+dodmoshe,hasenaar
+Jonathan Meerson - 315363838 - jonathan.meerson@mail.huji.ac.il
+Dean Hasenaar - 313584401 - dean.hasenaar@mail.huji.ac.il
+
+~Nand2Tetris Ex5~
+
+~Files submitted~
+ExtendAlu.hdl - an extended version of the alu from project 2, featuring multiplication and shifting
+Memory.hdl - entire memory unit of the computer, get an address and calculate the output from the address location
+CPU.hdl - central processing unit of the hack computer, getting an a/c instruction and can compute output from the 
+          alu and updates the AMD registers.
+CpuMul.hdl - an extended version of the cpu, featuring two more useful bits in the c instruction, extending the chip 
+             to compute from the extended alu
+Computer.hdl - a top chip combining all of the hack computer's hardware devices: cpu, ram and rom.
+
+~Remarks~
+*In the CPU/CPUMUL part we converted the diagrams from the book to an hdl code with the control bits we got from
+ the input instruction itself.
+*The extended ALU was the same as the ALU but we computed the multiplication and shift parts and just ~MUXED IT~ in
+ the end.
+*In the memory chip we checked where the address is located (RAM or I/O devices) and then we just computed the output 
+ from all of them and MUXED IT AGAIN.
+*In the computer top chip we just translated the diagram from the book the hdl language connecting all the chips from 
+ this chapter with the ROM one.

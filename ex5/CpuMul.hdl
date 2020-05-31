@@ -1,0 +1,75 @@
+/**
+* This chip is an extension of the book CPU by using the extended ALU.
+* More specificly if instruction[15]==0 or (instruction[14] and instruction[13] equals 1)
+* the CpuMul behave exactly as the book CPU.
+* While if it is C instruction and instruction[13] == 0 the output will be D*A/M 
+* (according to instruction[12]).
+* Moreover, if it is c instruction and instruction[14] == 0 it will behave as follows:
+*
+* instruction:  | 12 | 11 | 10 |
+* _____________________________
+* shift left D  | 0  | 1  | 1  |
+* shift left A  | 0  | 1  | 0  |
+* shift left M  | 1  | 1  | 0  |
+* shift right D | 0  | 0  | 1  |
+* shift right A | 0  | 0  | 0  |
+* shift right M | 1  | 0  | 0  |
+**/
+
+CHIP CpuMul{
+
+    IN  inM[16],         // M value input  (M = contents of RAM[A])
+        instruction[16], // Instruction for execution
+        reset;           // Signals whether to re-start the current
+                         // program (reset=1) or continue executing
+                         // the current program (reset=0).
+
+    OUT outM[16],        // M value output
+        writeM,          // Write into M? 
+        addressM[15],    // Address in data memory (of M)
+        pc[15];          // address of next instruction
+
+     PARTS:
+
+    // i  _  _  a  c1 c2 c3 c4 c5 c6 d1 d2 d3 j1 j2 j3
+    // 15 14 13 12 11 10 09 08 07 06 05 04 03 02 01 00
+
+     // i  _  _  a c1 c2 c3 c4 c5 c6 d1 d2 d3 j1 j2 j3
+    // 15 14 13 12 11 10 09 08 07 06 05 04 03 02 01 00
+
+	//check if c instruction
+	Or(a=instruction[15], b=false, out=isCinstruction);
+	
+	Mux16(a=instruction, b=aluOut, sel=isCinstruction, out=toAregister);
+	Not(in=isCinstruction, out=isAinstruction);
+	
+
+	// load to A register if needed
+	Or(a=isAinstruction, b=instruction[5], out=isLoadA);
+	ARegister(in=toAregister, load=isLoadA, out=AregisterOutput, out[0..14]=addressM);
+
+	And(a=isCinstruction, b=instruction[12], out=AorM);
+	Mux16(a=AregisterOutput, b=inM, sel = AorM, out=InstructionToAlu);
+
+	ExtendAlu(x=DregisterOut, y=InstructionToAlu, instruction=instruction[6..14], out=aluOut, out=outM, zr=zrOut, ng=ngOut);
+    
+	And(a=isCinstruction, b=instruction[4], out=isLoadD);
+	DRegister(in=aluOut, load=isLoadD, out=DregisterOut);
+
+	And(a=isCinstruction, b=instruction[3], out=writeM);
+
+	Not(in=ngOut, out=notNg);
+	Not(in=zrOut, out=notZr);
+	And(a=notNg, b=notZr, out=pos); // out > 0, if(ngOut) then out < 0, if(zrOut) then out=0
+	
+	And(a=instruction[2], b=ngOut, out=jlt);
+	And(a=instruction[1], b=zrOut, out=jeq);	
+	And(a=instruction[0], b=pos,   out=jgt);
+ 	
+	Or(a=jlt, b=jeq, out=jtemp);
+	Or(a=jtemp, b=jgt, out=jumpCond);
+	
+	And(a=isCinstruction, b=jumpCond, out=isJmp);
+
+	PC(in=AregisterOutput, load=isJmp, inc=true, reset=reset, out[0..14]=pc);
+}

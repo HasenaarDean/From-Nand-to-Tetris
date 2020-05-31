@@ -1,0 +1,61 @@
+CHIP Mul{
+    IN a[16], b[16];
+    OUT out[16];
+
+    PARTS:
+    IsZero16(in=a, out=IsZeroA);
+    IsZero16(in=b, out=IsZeroB);
+    Xor(a=a[15], b=b[15], out=signTemp);
+    Not(in=signTemp, out=sign);
+    MulBit16(in = a, sel = b[0], out = d1);
+    MulBit16(in = a, sel = b[1], out = d2);
+    MulBit16(in = a, sel = b[2], out = d3);
+    MulBit16(in = a, sel = b[3], out = d4);
+    MulBit16(in = a, sel = b[4], out = d5);
+    MulBit16(in = a, sel = b[5], out = d6);
+    MulBit16(in = a, sel = b[6], out = d7);
+    MulBit16(in = a, sel = b[7], out = d8);
+    MulBit16(in = a, sel = b[8], out = d9);
+    MulBit16(in = a, sel = b[9], out = d10);
+    MulBit16(in = a, sel = b[10], out = d11);
+    MulBit16(in = a, sel = b[11], out = d12);
+    MulBit16(in = a, sel = b[12], out = d13);
+    MulBit16(in = a, sel = b[13], out = d14);
+    MulBit16(in = a, sel = b[14], out = d15);
+
+    ShiftLeft(in = d2, out = r1);
+    ShiftLeft2(in = d3, out = r2);
+    ShiftLeft3(in = d4, out = r3);
+    ShiftLeft4(in = d5, out = r4);
+    ShiftLeft5(in = d6, out = r5);
+    ShiftLeft6(in = d7, out = r6);
+    ShiftLeft7(in = d8, out = r7);
+    ShiftLeft8(in = d9, out = r8);
+    ShiftLeft9(in = d10, out = r9);
+    ShiftLeft10(in = d11, out = r10);
+    ShiftLeft11(in = d12, out = r11);
+    ShiftLeft12(in = d13, out = r12);
+    ShiftLeft13(in = d14, out = r13);
+    ShiftLeft14(in = d15, out = r14);
+    //ShiftLeft15(in = d16, out = r15);
+
+    Add16(a = r1, b = r2, out = sum1);
+    Add16(a = sum1, b = r3, out = sum2);
+    Add16(a = sum2, b = r4, out = sum3);
+    Add16(a = sum3, b = r5, out = sum4);
+    Add16(a = sum4, b = r6, out = sum5);
+    Add16(a = sum5, b = r7, out = sum6);
+    Add16(a = sum6, b = r8, out = sum7);
+    Add16(a = sum7, b = r9, out = sum8);
+    Add16(a = sum8, b = r10, out = sum9);
+    Add16(a = sum9, b = r11, out = sum10);
+    Add16(a = sum10, b = r12, out = sum11);
+    Add16(a = sum11, b = r13, out = sum12);
+    Add16(a = sum12, b = r14, out = sum13);
+    Add16(a = sum13, b = d1, out = sum14);
+    SetSign16(in=sum14, sign=sign, out=sum15);
+    Mux16(a=false, b=sum15, sel=IsZeroA, out=sum16);
+    Mux16(a=false, b=sum16, sel=IsZeroB, out=out);
+    
+
+}

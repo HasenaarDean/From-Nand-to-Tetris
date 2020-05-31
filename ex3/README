@@ -1,0 +1,25 @@
+tank10000
+===============================================================================
+Alexandr Tankov, ID 327337903, alexande.tankov@mail.huji.ac.il
+===============================================================================
+
+                           Project 3 - Sequaltial Logic
+                           ----------------------------
+  
+
+Submitted Files
+---------------
+README - This file.
+Bit.hdl
+Register.hdl
+RAM8.hdl
+RAM16.hdl
+RAM64.hdl
+RAM512.hdl
+RAM4K.hdl
+RAM8K.hdl
+PC.hdl
+
+Remarks
+-------
+

@@ -1,0 +1,31 @@
+hasenaar
+Dean Hasenaar - 313584401 - dean.hasenaar@mail.huji.ac.il
+
+~Nand2Tetris Ex1~
+
+~Files submitted~
+README - this file
+Mux4Way16.hdl - Mux4Way chip of 16 bits inputs
+Mux.hdl - Mux chip of 2 single bits inputs
+Or16.hdl - Or chip of 16 bits inputs
+And16.hdl - And chip of 16 bits inputs
+Mux16.hdl - Mux chip of 16 bits inputs
+DMux.hdl - DmMux chip of 3 single bits inputs
+Not16.hdl - Not chip of 16 bits input
+Or8Way.hdl - Or chip of 8 single bit inputs.
+Xor.hdl - Xor chip of 2 single bits inputs
+Or.hdl - Or chip of 2 single bits inputs
+DMux8Way.hdl - DMux chip of 9 single bit inputs
+DMux4Way.hdl - Dmux chip of 5 single bit inputs
+Not.hdl - Not chip of 2 single bit inputs
+And.hdl - And chip of 2 single bit inputs
+Mux8Way16.hdl - Mux chip of 8 inputs of 16 bits
+
+~Remarks~
+Created all the required chips. Mostly using truth tables.
+Did not create new chips.
+
+
+
+
+

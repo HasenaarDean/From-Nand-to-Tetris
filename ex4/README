@@ -1,0 +1,22 @@
+tank10000, hasenaar
+===============================================================================
+Alexandr Tankov, ID 327337903, alexande.tankov@mail.huji.ac.il
+Dean Hasenaar, ID 313584401, dean.hasenaar@mail.huji.ac.il
+===============================================================================
+
+                           Project 4 - Machine Language
+                           ----------------------------
+  
+
+Submitted Files
+---------------
+README - This file.
+Fill.asm
+Divide.asm
+Sort.asm
+Mult.asm
+
+Remarks
+-------
+assembly files that perform some math operations, sorting a set of numbers and
+a manipulation of GUI
